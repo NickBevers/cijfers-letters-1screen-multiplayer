@@ -16,19 +16,28 @@
         android:rowCount="2"
         android:rowOrderPreserved="false"
         android:useDefaultMargins="true"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_low_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/gridlayout"
+        android:text="Low"
+        app:layout_constraintEnd_toStartOf="@+id/btn_high_number"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:text="Go"
-        android:onClick="startTimer"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/gridlayout" />
 
+    <Button
+        android:id="@+id/btn_high_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="High"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_low_number"
+        app:layout_constraintTop_toBottomOf="@+id/gridlayout" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

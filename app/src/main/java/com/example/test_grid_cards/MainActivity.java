@@ -1,3 +1,17 @@
+/*
+Needed:
+
+Main activity -> The screen
+
+Fragment Player 1 -> bottom half of the screen
+Fragment Player 2 -> top half of the screen
+
+Viewmodel Letters -> All content for the letters
+Viewmodel Numbers -> All content for the numbers
+Viewmodel Gamestate -> All info about the game (playing/stopped, round,
+ */
+
+
 package com.example.test_grid_cards;
 
 import androidx.appcompat.app.AppCompatActivity;
