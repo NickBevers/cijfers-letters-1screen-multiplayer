@@ -38,8 +38,4 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btn_low_number"
         app:layout_constraintTop_toBottomOf="@+id/gridlayout" />
-
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
