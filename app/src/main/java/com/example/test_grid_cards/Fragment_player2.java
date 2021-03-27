@@ -24,12 +24,10 @@ public class Fragment_player2 extends Fragment {
         super(R.layout.activity_fragment_player1);
     }
 
-
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ConstraintLayout v = (ConstraintLayout) inflater.inflate(R.layout.activity_fragment_player2, container, false);
+        View v = inflater.inflate(R.layout.activity_fragment_player2, container, false);
         number.setValue(0);
         cardGridLayout = v.findViewById(R.id.gridlayout);
 
