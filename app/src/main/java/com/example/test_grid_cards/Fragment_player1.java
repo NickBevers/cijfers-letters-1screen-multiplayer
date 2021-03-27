@@ -18,7 +18,6 @@ import java.util.Timer;
 
 public class Fragment_player1 extends Fragment {
 
-    private GridLayout cardGridLayout;
     public MutableLiveData<Integer> number = new MutableLiveData<Integer>();
 
     public Fragment_player1() {
@@ -32,7 +31,7 @@ public class Fragment_player1 extends Fragment {
 
         View v = inflater.inflate(R.layout.activity_fragment_player1, container, false);
         number.setValue(0);
-        cardGridLayout = v.findViewById(R.id.gridlayout);
+        GridLayout cardGridLayout = v.findViewById(R.id.gridlayout);
 
         for (int i = 0; i < 6; i++){
             View cardView = getLayoutInflater().inflate(R.layout.cardlayout, cardGridLayout, false);
@@ -40,7 +39,6 @@ public class Fragment_player1 extends Fragment {
             tv.setText(Integer.toString(i +1));
             cardGridLayout.addView(cardView);
         }
-
 
         return v;
     }
