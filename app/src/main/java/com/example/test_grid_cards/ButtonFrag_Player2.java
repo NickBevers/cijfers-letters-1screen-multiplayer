@@ -13,13 +13,13 @@ public class ButtonFrag_Player2 extends Fragment {
 
     public ButtonFrag_Player2() {
         // Required empty public constructor
-        super(R.layout.button_frag_player2);
+        super(R.layout.letter_frag);
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.button_frag_player1, container, false);
+        View v = inflater.inflate(R.layout.number_frag, container, false);
 
         return v;
 

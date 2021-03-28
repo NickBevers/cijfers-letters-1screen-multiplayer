@@ -7,21 +7,22 @@
     tools:context=".Fragment_player2">
 
     <Button
-        android:id="@+id/btn_low_number"
+        android:id="@+id/btn_consonant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toStartOf="@+id/btn_high_number"
+        android:text="consonant"
+        app:layout_constraintEnd_toStartOf="@+id/btn_vowel"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btn_high_number"
+        android:id="@+id/btn_vowel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="High"
+        android:text="vowel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btn_low_number"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintStart_toEndOf="@+id/btn_consonant"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
