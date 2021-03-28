@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class LetterFrag extends Fragment {
-
     Letter_viewmodel viewModel;
 
     public LetterFrag() {

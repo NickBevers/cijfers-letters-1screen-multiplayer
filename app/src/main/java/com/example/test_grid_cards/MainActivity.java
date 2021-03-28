@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         viewModel = new ViewModelProvider(this).get(Gamestate_viewmodel.class);
 
         viewModel.getRound().observe(this, round -> {
-            if(round.equals(Gamestate_viewmodel.RoundNum)){
+            if(!round.equals(Gamestate_viewmodel.RoundNum)){
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.frag_player1, frag1)
                         .replace(R.id.ButtonPlayer1, number_frag1)

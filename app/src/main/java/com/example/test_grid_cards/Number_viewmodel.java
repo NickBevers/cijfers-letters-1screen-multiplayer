@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Number_viewmodel extends ViewModel{
-    private MutableLiveData<ArrayList<Integer>> numberArray;
+    public MutableLiveData<ArrayList<Integer>> numberArray;
 
     public MutableLiveData<ArrayList<Integer>> getNumbers(){
         if (numberArray == null){

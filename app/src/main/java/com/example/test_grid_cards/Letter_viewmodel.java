@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Letter_viewmodel extends ViewModel {
-    private MutableLiveData<ArrayList<Character>> letterArray;
+    public MutableLiveData<ArrayList<Character>> letterArray;
 
     public MutableLiveData<ArrayList<Character>> getLetters(){
         if (letterArray == null){
