@@ -1,11 +1,12 @@
 package com.example.test_grid_cards;
 
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Letter_viewmodel {
+public class Letter_viewmodel extends ViewModel {
     private MutableLiveData<ArrayList<Character>> letterArray;
 
     public MutableLiveData<ArrayList<Character>> getLetters(){

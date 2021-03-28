@@ -9,11 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class ButtonFrag_Player1 extends Fragment {
+public class LetterFrag extends Fragment {
 
-    public ButtonFrag_Player1() {
+    public LetterFrag() {
         // Required empty public constructor
-        super(R.layout.number_frag);
+        super(R.layout.letter_frag);
     }
 
     @Nullable
@@ -22,5 +22,6 @@ public class ButtonFrag_Player1 extends Fragment {
         View v = inflater.inflate(R.layout.number_frag, container, false);
 
         return v;
+
     }
 }

@@ -1,11 +1,12 @@
 package com.example.test_grid_cards;
 
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Number_viewmodel {
+public class Number_viewmodel extends ViewModel{
     private MutableLiveData<ArrayList<Integer>> numberArray;
 
     public MutableLiveData<ArrayList<Integer>> getNumbers(){

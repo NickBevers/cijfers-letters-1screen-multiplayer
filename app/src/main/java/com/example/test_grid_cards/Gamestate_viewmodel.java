@@ -1,8 +1,9 @@
 package com.example.test_grid_cards;
 
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
-public class Gamestate_viewmodel {
+public class Gamestate_viewmodel extends ViewModel{
     private MutableLiveData<Integer> round;
     private MutableLiveData<Integer> game;
     public static final Integer RoundNum = 0;
