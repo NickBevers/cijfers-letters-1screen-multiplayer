@@ -16,6 +16,7 @@ package com.example.test_grid_cards;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 import android.view.View;
@@ -23,17 +24,22 @@ import android.widget.GridLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
+    Gamestate_viewmodel viewModel;
     private final Fragment_player1 frag1 = new Fragment_player1();
     private final Fragment_player2 frag2 = new Fragment_player2();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //viewModel = new ViewModelProvider(this).get(Gamestate_viewmodel.class);
+
 
 
 
