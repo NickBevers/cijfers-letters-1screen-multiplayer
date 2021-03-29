@@ -33,7 +33,10 @@ public class LetterFrag extends Fragment {
             viewModel.pickVowel();
             Log.d("TAG", "VOWELVOWELVOWEL");
         });
-        v.findViewById(R.id.btn_consonant).setOnClickListener(view -> viewModel.pickConsonant());
+        v.findViewById(R.id.btn_consonant).setOnClickListener(view -> {
+            Log.d("TAG", "CONSONANTCONSONANT");
+            viewModel.pickConsonant();
+        });
 
         return v;
     }

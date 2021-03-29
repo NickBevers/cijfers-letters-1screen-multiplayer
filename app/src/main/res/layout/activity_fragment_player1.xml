@@ -6,12 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".Fragment_player1">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/child_fragment"
-        app:layout_constraintTop_toTopOf="parent"/>
-
     <GridLayout
         android:id="@+id/gridlayout"
         android:layout_width="match_parent"
@@ -22,5 +16,14 @@
         android:rowCount="2"
         android:rowOrderPreserved="false"
         android:useDefaultMargins="true"
-        app:layout_constraintTop_toBottomOf="@+id/child_fragment"/>
+        app:layout_constraintBottom_toTopOf="@+id/child_fragment"/>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/child_fragment"
+        app:layout_constraintTop_toBottomOf="@+id/gridlayout"/>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
