@@ -1,15 +1,26 @@
 package com.example.test_grid_cards;
 
+import android.util.Log;
+
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 public class Letter_viewmodel extends ViewModel {
-    public MutableLiveData<ArrayList<Character>> letterArray = new MutableLiveData<ArrayList<Character>>(new ArrayList<Character>());
+    public MutableLiveData<ArrayList<Character>> letterArray;
 
     public MutableLiveData<ArrayList<Character>> getLetters(){
+        if (letterArray == null){
+            letterArray = new MutableLiveData<ArrayList<Character>>();
+            letterArray.setValue(new ArrayList<Character>());
+        }
+
+        //Test for arraylist (log the arraylist)
+        ArrayList<Character> temp = letterArray.getValue();
+        Log.d("TAG", "letterArray: " + temp);
         return letterArray;
     }
 

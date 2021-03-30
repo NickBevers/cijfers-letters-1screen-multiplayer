@@ -8,6 +8,7 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Build;
@@ -28,15 +29,11 @@ import java.util.Timer;
 
 public class Fragment_player1 extends Fragment {
 
-    public MutableLiveData<Integer> number = new MutableLiveData<Integer>();
     public GridLayout cardGridLayout;
-    Letter_viewmodel LetterViewModel;
-    Number_viewmodel NumberViewModel;
-    private ArrayList<Character> letterArray;
     View v;
+    Gamestate_viewmodel GameViewModel;
     private final LetterFrag letter_frag = new LetterFrag();
     private final NumberFrag number_frag = new NumberFrag();
-    Gamestate_viewmodel GameViewModel;
 
     public Fragment_player1() {
         // Required empty public constructor
@@ -47,8 +44,6 @@ public class Fragment_player1 extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.activity_fragment_player1, container, false);
-        number.setValue(0);
-
 
         return v;
     }
@@ -73,29 +68,32 @@ public class Fragment_player1 extends Fragment {
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        LetterViewModel = new ViewModelProvider(this).get(Letter_viewmodel.class);
-        NumberViewModel = new ViewModelProvider(this).get(Number_viewmodel.class);
         cardGridLayout = v.findViewById(R.id.gridlayout);
+        Letter_viewmodel LetterViewModel = new ViewModelProvider(requireActivity()).get(Letter_viewmodel.class);
+        Number_viewmodel NumberViewModel = new ViewModelProvider(requireActivity()).get(Number_viewmodel.class);
 
-        /*for (int i = 0; i < 6; i++){
-            View cardView = getLayoutInflater().inflate(R.layout.cardlayout, cardGridLayout, false);
-            TextView tv = cardView.findViewById(R.id.number_card_text);
-            tv.setText("");
-            cardGridLayout.addView(cardView);
-        }*/
-
-        cardGridLayout = v.findViewById(R.id.gridlayout);
         LetterViewModel.getLetters().observe(getViewLifecycleOwner(), letters -> {
             Log.d("TAG", "letterArray: " + Arrays.toString(new ArrayList[]{letters}));
-            View cardView = getLayoutInflater().inflate(R.layout.cardlayout, cardGridLayout, false);
-            TextView tv = cardView.findViewById(R.id.number_card_text);
-            tv.setText("");
-            cardGridLayout.addView(cardView);
+            for (int i = 0; i < letters.size(); i++){
+                View cardView = getLayoutInflater().inflate(R.layout.cardlayout, cardGridLayout, false);
+                TextView tv = cardView.findViewById(R.id.number_card_text);
+                tv.setText(letters.get(i));
+                cardGridLayout.addView(cardView);
+            }
         });
+
+        /*LetterViewModel.getLetters().observe(getViewLifecycleOwner(), letters -> {
+            Log.d("TAG", "letterArray: " + Arrays.toString(new ArrayList[]{letters}));
+            for (int i = 0; i < letters.size(); i++) {
+                View cardView = getLayoutInflater().inflate(R.layout.cardlayout, cardGridLayout, false);
+                TextView tv = cardView.findViewById(R.id.number_card_text);
+                tv.setText(letters.get(i));
+                cardGridLayout.addView(cardView);
+            }
+        });*/
 
 
     }
@@ -128,4 +126,36 @@ for (int i = 0; i < letterArray.size(); i++){
     Log.d("TVListarray", "arr: " + Arrays.toString(new View[]{tvListItem}));
     //tvList.set(i, a);
 }
+ */
+
+
+/*
+@RequiresApi(api = Build.VERSION_CODES.N)
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        cardGridLayout = v.findViewById(R.id.gridlayout);
+        Letter_viewmodel LetterViewModel = new ViewModelProvider(requireActivity()).get(Letter_viewmodel.class);
+        Number_viewmodel NumberViewModel = new ViewModelProvider(requireActivity()).get(Number_viewmodel.class);
+
+        for (int i = 0; i < 6; i++){
+            View cardView = getLayoutInflater().inflate(R.layout.cardlayout, cardGridLayout, false);
+            TextView tv = cardView.findViewById(R.id.number_card_text);
+            tv.setText("");
+            cardGridLayout.addView(cardView);
+        }
+
+
+        LetterViewModel.getLetters().observe(getViewLifecycleOwner(), letters -> {
+                Log.d("TAG", "letterArray: " + Arrays.toString(new ArrayList[]{letters}));
+                for (int i = 0; i < letters.size(); i++) {
+        View cardView = getLayoutInflater().inflate(R.layout.cardlayout, cardGridLayout, false);
+        TextView tv = cardView.findViewById(R.id.number_card_text);
+        tv.setText(letters.get(i));
+        cardGridLayout.addView(cardView);
+        }
+        });
+
+
+        }
  */
