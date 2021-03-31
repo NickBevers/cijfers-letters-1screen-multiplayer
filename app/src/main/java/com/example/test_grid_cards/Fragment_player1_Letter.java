@@ -3,6 +3,7 @@ package com.example.test_grid_cards;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -11,13 +12,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
-public class Fragment_player1_Letter extends Fragment {
+import java.util.Timer;
+import java.util.TimerTask;
 
+public class Fragment_player1_Letter extends Fragment {
     public GridLayout cardGridLayout;
     View v;
     Gamestate_viewmodel GameViewModel;
+    Timer t = new Timer();
+    private static final int PERIOD = 1000;
+    public MutableLiveData<Integer> number = new MutableLiveData<Integer>();
 
     public Fragment_player1_Letter() {
         // Required empty public constructor
@@ -28,7 +35,7 @@ public class Fragment_player1_Letter extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.player1_letter, container, false);
-
+        number.setValue(0);
         return v;
     }
 
@@ -42,80 +49,46 @@ public class Fragment_player1_Letter extends Fragment {
 
         v.findViewById(R.id.btn_vowel).setOnClickListener(view -> {
             letterViewModel.pickVowel();
-            Log.d("TAG", "VOWELVOWELVOWEL");
         });
 
         v.findViewById(R.id.btn_consonant).setOnClickListener(view -> {
-            Log.d("TAG", "CONSONANTCONSONANT");
             letterViewModel.pickConsonant();
         });
 
 
-        /*GameViewModel.getRound().observe(getViewLifecycleOwner(), round -> {
-            if(!round.equals(Gamestate_viewmodel.RoundNum)){
-                getChildFragmentManager().beginTransaction()
-                        .replace(R.id.child_fragment, number_frag)
-                        .commit();
-            }
-            else{
-                getChildFragmentManager().beginTransaction()
-                        .replace(R.id.child_fragment, letter_frag)
-                        .commit();
-            }
-        });*/
-
-
 
         letterViewModel.getLetters().observe(getViewLifecycleOwner(), letterArray -> {
-            Log.d("TAG", "onActivityCreated: TESTESTESTESTESTESS ");
-            if (letterArray.size() > 0){
+            if (letterArray.size() > 0 && letterArray.size() <= 6){
                 View cardView = getLayoutInflater().inflate(R.layout.cardlayout, cardGridLayout, false);
                 TextView tv = cardView.findViewById(R.id.number_card_text);
                 tv.setText(String.valueOf(letterArray.get(letterArray.size()-1)));
                 cardGridLayout.addView(cardView);
             }
-        });
-        /*letterViewModel.getLetters().observe(getViewLifecycleOwner(), letters -> {
-            Log.d("TAG", "letterArray: " + Arrays.toString(new ArrayList[]{letters}));
-            for (int i = 0; i < letters.size(); i++) {
-                View cardView = getLayoutInflater().inflate(R.layout.cardlayout, cardGridLayout, false);
-                TextView tv = cardView.findViewById(R.id.number_card_text);
-                tv.setText(letters.get(i));
-                cardGridLayout.addView(cardView);
+
+            if (letterArray.size() == 6){
+                startTimer(requireView());
             }
-        });*/
+        });
 
-
+        ProgressBar pb = requireActivity().findViewById(R.id.progress_bar);
+        //pb::setProgress == (number -> pb.setProgress(number)
+        number.observe(requireActivity() , pb::setProgress);
     }
 
+    public void startTimer(View w) {
+        long startTime = System.currentTimeMillis();
+        t.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                if (System.currentTimeMillis() - startTime <= 5000) {
+                    number.postValue(number.getValue() + 1);
+                } else {
+                    Log.d("TAG", "Timer: TIMEEEEEE ");
+                    cancel();
+                }
+
+            }
+        }, 0, PERIOD);
+    }
 
 }
-
-/*
-TextView tv = cardView.findViewById(R.id.number_card_text);
-tv.setText(Integer.toString(i +1));
- */
-
-/*
-LetterViewModel.getLetters().observe(getViewLifecycleOwner(), letters -> {
-    letters.forEach( letter -> {
-        TextView tv = letter.findViewById(R.id.number_card_text);
-        tv.setText(letter);
-        cardGridLayout.addView(cardView);
-    });
-
-    Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction()
-            .detach(this)
-            .attach(this)
-            .commit();
-});
- */
-
-/*
-for (int i = 0; i < letterArray.size(); i++){
-    String a = String.valueOf(letterArray.get(i));
-    View tvListItem = tvList.get(i);
-    Log.d("TVListarray", "arr: " + Arrays.toString(new View[]{tvListItem}));
-    //tvList.set(i, a);
-}
- */

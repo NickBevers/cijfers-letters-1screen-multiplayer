@@ -55,7 +55,7 @@ public class Fragment_player2_Number extends Fragment {
 
         numberViewModel.getNumbers().observe(getViewLifecycleOwner(), numberArray -> {
             Log.d("TAG", "onActivityCreated: TESTESTESTESTESTESS ");
-            if (numberArray.size() > 0){
+            if (numberArray.size() > 0 && numberArray.size() <= 6){
                 View cardView = getLayoutInflater().inflate(R.layout.cardlayout, cardGridLayout, false);
                 TextView tv = cardView.findViewById(R.id.number_card_text);
                 tv.setText(String.valueOf(numberArray.get(numberArray.size()-1)));

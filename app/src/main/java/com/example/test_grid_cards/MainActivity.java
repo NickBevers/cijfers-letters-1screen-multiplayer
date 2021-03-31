@@ -51,5 +51,3 @@ public class MainActivity extends AppCompatActivity {
 
     }
 }
-
-//IDEA: 2 extra fragments for the Letters/Numbers buttons

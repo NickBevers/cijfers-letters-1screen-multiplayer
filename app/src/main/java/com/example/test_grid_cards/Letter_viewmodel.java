@@ -17,11 +17,7 @@ public class Letter_viewmodel extends ViewModel {
             letterArray = new MutableLiveData<ArrayList<Character>>();
             letterArray.setValue(new ArrayList<Character>());
         }
-
-
-        //Test for arraylist (log the arraylist)
-        ArrayList<Character> temp = letterArray.getValue();
-        Log.d("TAG", "letterArray: " + temp);
+        Log.i("TAG", "getLetters: " + letterArray);
         return letterArray;
     }
 

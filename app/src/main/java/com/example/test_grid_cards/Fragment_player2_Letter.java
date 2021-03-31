@@ -69,7 +69,7 @@ public class Fragment_player2_Letter extends Fragment {
 
         letterViewModel.getLetters().observe(getViewLifecycleOwner(), letterArray -> {
             Log.d("TAG", "onActivityCreated: TESTESTESTESTESTESS ");
-            if (letterArray.size() > 0){
+            if (letterArray.size() > 0 && letterArray.size() <= 6){
                 View cardView = getLayoutInflater().inflate(R.layout.cardlayout, cardGridLayout, false);
                 TextView tv = cardView.findViewById(R.id.number_card_text);
                 tv.setText(String.valueOf(letterArray.get(letterArray.size()-1)));
