@@ -11,6 +11,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -65,27 +66,28 @@ public class Fragment_player1 extends Fragment {
             }
         });
 
+        cardGridLayout = v.findViewById(R.id.gridlayout);
+        Letter_viewmodel letterViewModel = new ViewModelProvider(requireActivity()).get(Letter_viewmodel.class);
+        Number_viewmodel numberViewModel = new ViewModelProvider(requireActivity()).get(Number_viewmodel.class);
 
+        letterViewModel.getLetters().observe(getViewLifecycleOwner(), letters -> {
+
+            Log.d("TAG", "onActivityCreated: TESTESTESTESTESTESS ");
+            for (int i = 0; i < letters.size(); i++){
+                View cardView = getLayoutInflater().inflate(R.layout.cardlayout, cardGridLayout, false);
+                TextView tv = cardView.findViewById(R.id.number_card_text);
+                tv.setText("letters.get(i)");
+                cardGridLayout.addView(cardView);
+            }
+        });
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        cardGridLayout = v.findViewById(R.id.gridlayout);
-        Letter_viewmodel LetterViewModel = new ViewModelProvider(requireActivity()).get(Letter_viewmodel.class);
-        Number_viewmodel NumberViewModel = new ViewModelProvider(requireActivity()).get(Number_viewmodel.class);
 
-        LetterViewModel.getLetters().observe(getViewLifecycleOwner(), letters -> {
-            Log.d("TAG", "letterArray: " + Arrays.toString(new ArrayList[]{letters}));
-            for (int i = 0; i < letters.size(); i++){
-                View cardView = getLayoutInflater().inflate(R.layout.cardlayout, cardGridLayout, false);
-                TextView tv = cardView.findViewById(R.id.number_card_text);
-                tv.setText(letters.get(i));
-                cardGridLayout.addView(cardView);
-            }
-        });
 
-        /*LetterViewModel.getLetters().observe(getViewLifecycleOwner(), letters -> {
+        /*letterViewModel.getLetters().observe(getViewLifecycleOwner(), letters -> {
             Log.d("TAG", "letterArray: " + Arrays.toString(new ArrayList[]{letters}));
             for (int i = 0; i < letters.size(); i++) {
                 View cardView = getLayoutInflater().inflate(R.layout.cardlayout, cardGridLayout, false);
@@ -97,6 +99,8 @@ public class Fragment_player1 extends Fragment {
 
 
     }
+
+
 }
 
 /*

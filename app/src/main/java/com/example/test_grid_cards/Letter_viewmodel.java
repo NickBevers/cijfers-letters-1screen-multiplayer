@@ -18,6 +18,7 @@ public class Letter_viewmodel extends ViewModel {
             letterArray.setValue(new ArrayList<Character>());
         }
 
+
         //Test for arraylist (log the arraylist)
         ArrayList<Character> temp = letterArray.getValue();
         Log.d("TAG", "letterArray: " + temp);
@@ -67,6 +68,7 @@ public class Letter_viewmodel extends ViewModel {
                 c = pickALetter();
             } while (!isConsonant(c));
             list.add(c);
+            Log.d("TAG", "pickConsonant: LISTLIST" + list.size());
             letterArray.setValue(list);
         }
     }
