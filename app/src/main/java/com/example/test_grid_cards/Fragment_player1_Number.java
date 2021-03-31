@@ -21,13 +21,13 @@ public class Fragment_player1_Number extends Fragment {
 
     public Fragment_player1_Number() {
         // Required empty public constructor
-        super(R.layout.player1_number);
+        super(R.layout.number);
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        v = inflater.inflate(R.layout.player1_number, container, false);
+        v = inflater.inflate(R.layout.number, container, false);
         return v;
     }
 
