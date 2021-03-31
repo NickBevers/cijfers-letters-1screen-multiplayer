@@ -15,23 +15,16 @@ Viewmodel Gamestate -> All info about the game (playing/stopped, round,
 package com.example.test_grid_cards;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.GridLayout;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-
-import java.util.Objects;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
     Gamestate_viewmodel viewModel;
-    private final Fragment_player1 frag1 = new Fragment_player1();
-    private final Fragment_player2 frag2 = new Fragment_player2();
+    private final Fragment_player1_Letter frag1Letter = new Fragment_player1_Letter();
+    private final Fragment_player1_Number frag1Number = new Fragment_player1_Number();
+    private final Fragment_player2_Letter frag2Letter = new Fragment_player2_Letter();
+    private final Fragment_player2_Number frag2Number = new Fragment_player2_Number();
 
 
     @Override
@@ -40,10 +33,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         viewModel = new ViewModelProvider(this).get(Gamestate_viewmodel.class);
 
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.frag_player1, frag1)
-                .replace(R.id.frag_player2, frag2)
-                .commit();
+        viewModel.getRound().observe(this, round -> {
+            if(round.equals(Gamestate_viewmodel.RoundNum)){
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frag_player1, frag1Letter)
+                        .replace(R.id.frag_player2, frag2Letter)
+                        .commit();
+            }
+            else{
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frag_player1, frag1Number)
+                        .replace(R.id.frag_player2, frag2Number)
+                        .commit();
+            }
+        });
+
 
     }
 }
