@@ -11,13 +11,13 @@ import java.util.Random;
 
 public class Letter_viewmodel extends ViewModel {
     public MutableLiveData<ArrayList<Character>> letterArray;
+    public String randomWord = "TESTER";
 
     public MutableLiveData<ArrayList<Character>> getLetters(){
         if (letterArray == null){
             letterArray = new MutableLiveData<ArrayList<Character>>();
             letterArray.setValue(new ArrayList<Character>());
         }
-        Log.i("TAG", "getLetters: " + letterArray);
         return letterArray;
     }
 
@@ -64,7 +64,7 @@ public class Letter_viewmodel extends ViewModel {
                 c = pickALetter();
             } while (!isConsonant(c));
             list.add(c);
-            Log.d("TAG", "pickConsonant: LISTLIST" + list.size());
+            //Log.d("TAG", "pickConsonant: LISTLIST" + list.size());
             letterArray.setValue(list);
         }
     }

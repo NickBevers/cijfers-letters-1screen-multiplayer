@@ -21,10 +21,11 @@ import java.util.TimerTask;
 public class Fragment_player1_Letter extends Fragment {
     public GridLayout cardGridLayout;
     View v;
-    Gamestate_viewmodel GameViewModel;
+    Gamestate_viewmodel gameViewModel;
     Timer t = new Timer();
     private static final int PERIOD = 1000;
     public MutableLiveData<Integer> number = new MutableLiveData<Integer>();
+    MutableLiveData<Integer> ronde;
 
     public Fragment_player1_Letter() {
         // Required empty public constructor
@@ -35,6 +36,7 @@ public class Fragment_player1_Letter extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.letter, container, false);
+        gameViewModel = new ViewModelProvider(requireActivity()).get(Gamestate_viewmodel.class);
         number.setValue(0);
         return v;
     }
@@ -42,7 +44,6 @@ public class Fragment_player1_Letter extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        GameViewModel = new ViewModelProvider(this).get(Gamestate_viewmodel.class);
         cardGridLayout = v.findViewById(R.id.gridlayout);
         Letter_viewmodel letterViewModel = new ViewModelProvider(requireActivity()).get(Letter_viewmodel.class);
 
@@ -66,6 +67,10 @@ public class Fragment_player1_Letter extends Fragment {
             }
 
             if (letterArray.size() == 6){
+                TextView tv = v.findViewById(R.id.tv_random);
+                /*int randomNum = numberViewModel.pickRandom().getValue();*/
+                String randomWord = letterViewModel.randomWord;
+                tv.setText(String.valueOf(randomWord));
                 startTimer(requireView());
             }
         });
@@ -83,12 +88,28 @@ public class Fragment_player1_Letter extends Fragment {
                 if (System.currentTimeMillis() - startTime <= 5000) {
                     number.postValue(number.getValue() + 1);
                 } else {
-                    Log.d("TAG", "Timer: TIMEEEEEE ");
+                    ronde = gameViewModel.getRound();
+                    //Log.d("TAG", "Timer: TIMEEEEEE " + ronde.getValue());
+                    if (ronde.getValue().equals(0)){
+                        ((MainActivity) requireActivity()).setRound(1);
+                        //Log.d("TAG", "IF" + ronde.getValue());
+                    }
+                    else{
+                        ((MainActivity) requireActivity()).setRound(0);
+                        //Log.d("TAG", "ELSE" + ronde.getValue());
+                    }
                     cancel();
                 }
 
             }
-        }, 0, PERIOD);
+        }, 1000, PERIOD);
+    }
+
+    @Override
+    public void onDestroyView() {
+        Letter_viewmodel letterViewModel = new ViewModelProvider(requireActivity()).get(Letter_viewmodel.class);
+        super.onDestroyView();
+        letterViewModel.clearLetter();
     }
 
 }

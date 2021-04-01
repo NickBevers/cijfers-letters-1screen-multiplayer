@@ -43,66 +43,36 @@ public class Fragment_player2_Number extends Fragment {
 
         v.findViewById(R.id.btn_low_number).setOnClickListener(view -> {
             numberViewModel.pickLowNumber();
-            Log.d("TAG", "LOW");
+            //Log.d("TAG", "LOW");
         });
 
         v.findViewById(R.id.btn_high_number).setOnClickListener(view -> {
-            Log.d("TAG", "HIGH");
+            //Log.d("TAG", "HIGH");
             numberViewModel.pickHighNumber();
         });
 
 
 
         numberViewModel.getNumbers().observe(getViewLifecycleOwner(), numberArray -> {
-            Log.d("TAG", "onActivityCreated: TESTESTESTESTESTESS ");
+            //Log.d("TAG", "onActivityCreated: TESTESTESTESTESTESS ");
             if (numberArray.size() > 0 && numberArray.size() <= 6){
                 View cardView = getLayoutInflater().inflate(R.layout.cardlayout, cardGridLayout, false);
                 TextView tv = cardView.findViewById(R.id.number_card_text);
                 tv.setText(String.valueOf(numberArray.get(numberArray.size()-1)));
                 cardGridLayout.addView(cardView);
             }
-        });
-        /*letterViewModel.getLetters().observe(getViewLifecycleOwner(), letters -> {
-            Log.d("TAG", "letterArray: " + Arrays.toString(new ArrayList[]{letters}));
-            for (int i = 0; i < letters.size(); i++) {
-                View cardView = getLayoutInflater().inflate(R.layout.cardlayout, cardGridLayout, false);
-                TextView tv = cardView.findViewById(R.id.number_card_text);
-                tv.setText(letters.get(i));
-                cardGridLayout.addView(cardView);
+
+            if (numberArray.size() == 6){
+                TextView tv = v.findViewById(R.id.tv_random);
+                /*int randomNum = numberViewModel.pickRandom().getValue();*/
+                int randomNum = numberViewModel.randomNum;
+                tv.setText(String.valueOf(randomNum));
             }
-        });*/
+        });
+
 
 
     }
 
 
 }
-
-/*
-TextView tv = cardView.findViewById(R.id.number_card_text);
-tv.setText(Integer.toString(i +1));
- */
-
-/*
-LetterViewModel.getLetters().observe(getViewLifecycleOwner(), letters -> {
-    letters.forEach( letter -> {
-        TextView tv = letter.findViewById(R.id.number_card_text);
-        tv.setText(letter);
-        cardGridLayout.addView(cardView);
-    });
-
-    Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction()
-            .detach(this)
-            .attach(this)
-            .commit();
-});
- */
-
-/*
-for (int i = 0; i < letterArray.size(); i++){
-    String a = String.valueOf(letterArray.get(i));
-    View tvListItem = tvList.get(i);
-    Log.d("TVListarray", "arr: " + Arrays.toString(new View[]{tvListItem}));
-    //tvList.set(i, a);
-}
- */

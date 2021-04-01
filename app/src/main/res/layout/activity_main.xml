@@ -24,7 +24,7 @@
         android:minWidth="200dp"
         android:indeterminate="false"
         android:progress="0"
-        android:max="5"/>
+        android:max="4"/>
 
     <LinearLayout
         android:id="@+id/frag_player2"

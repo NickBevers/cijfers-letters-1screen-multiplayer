@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
+import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
     Gamestate_viewmodel viewModel;
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         viewModel = new ViewModelProvider(this).get(Gamestate_viewmodel.class);
 
         viewModel.getRound().observe(this, round -> {
-            if(round.equals(Gamestate_viewmodel.RoundNum)){
+            if(!round.equals(0)){
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.frag_player1, frag1Letter)
                         .replace(R.id.frag_player2, frag2Letter)
@@ -47,7 +48,10 @@ public class MainActivity extends AppCompatActivity {
                         .commit();
             }
         });
+    }
 
-
+    public void setRound(int num){
+        Log.d("TAG", "setRound: RONDE " + num);
+        viewModel.setRound(num);
     }
 }

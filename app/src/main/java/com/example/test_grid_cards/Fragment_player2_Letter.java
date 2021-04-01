@@ -75,48 +75,13 @@ public class Fragment_player2_Letter extends Fragment {
                 tv.setText(String.valueOf(letterArray.get(letterArray.size()-1)));
                 cardGridLayout.addView(cardView);
             }
-        });
-        /*letterViewModel.getLetters().observe(getViewLifecycleOwner(), letters -> {
-            Log.d("TAG", "letterArray: " + Arrays.toString(new ArrayList[]{letters}));
-            for (int i = 0; i < letters.size(); i++) {
-                View cardView = getLayoutInflater().inflate(R.layout.cardlayout, cardGridLayout, false);
-                TextView tv = cardView.findViewById(R.id.number_card_text);
-                tv.setText(letters.get(i));
-                cardGridLayout.addView(cardView);
+
+            if (letterArray.size() == 6){
+                TextView tv = v.findViewById(R.id.tv_random);
+                /*int randomNum = numberViewModel.pickRandom().getValue();*/
+                String randomWord = letterViewModel.randomWord;
+                tv.setText(String.valueOf(randomWord));
             }
-        });*/
-
-
+        });
     }
-
-
 }
-
-/*
-TextView tv = cardView.findViewById(R.id.number_card_text);
-tv.setText(Integer.toString(i +1));
- */
-
-/*
-LetterViewModel.getLetters().observe(getViewLifecycleOwner(), letters -> {
-    letters.forEach( letter -> {
-        TextView tv = letter.findViewById(R.id.number_card_text);
-        tv.setText(letter);
-        cardGridLayout.addView(cardView);
-    });
-
-    Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction()
-            .detach(this)
-            .attach(this)
-            .commit();
-});
- */
-
-/*
-for (int i = 0; i < letterArray.size(); i++){
-    String a = String.valueOf(letterArray.get(i));
-    View tvListItem = tvList.get(i);
-    Log.d("TVListarray", "arr: " + Arrays.toString(new View[]{tvListItem}));
-    //tvList.set(i, a);
-}
- */
